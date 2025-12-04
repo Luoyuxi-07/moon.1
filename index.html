@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  川东达州-竹韵大竹</title>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 配置Tailwind自定义主题 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2E7D32', // 竹绿色
+            secondary: '#FF8F00', // 橙黄色
+            accent: '#1B5E20', // 深绿色
+            light: '#F1F8E9', // 浅绿色背景
+            dark: '#333333', // 深色文字
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      }
+    }
+  </style>
+  <style>
+    /* 全局样式 */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .hero-gradient {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    }
+    .section-divider {
+      height: 3px;
+      width: 80px;
+      background-color: #FF8F00;
+      margin: 1rem auto;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark">
+  <!-- 导航栏 -->
+  <nav id="navbar" class="fixed w-full bg-white/95 shadow-md z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <i class="fa fa-leaf text-primary text-2xl"></i>
+        <span class="text-xl font-bold text-primary">大竹县</span>
+      </a>
+      
+      <!-- 桌面导航 -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="text-dark hover:text-primary transition-colors">首页</a>
+        <a href="#food" class="text-dark hover:text-primary transition-colors">美食</a>
+        <a href="#culture" class="text-dark hover:text-primary transition-colors">风土人情</a>
+        <a href="#history" class="text-dark hover:text-primary transition-colors">历史英雄</a>
+        <a href="#scenery" class="text-dark hover:text-primary transition-colors">旅游景点</a>
+      </div>
+      
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden text-dark text-xl">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+        <a href="#home" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">首页</a>
+        <a href="#food" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">美食</a>
+        <a href="#culture" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">风土人情</a>
+        <a href="#history" class="text-dark hover:text-primary transition-colors py-2 border-b border-gray-100">历史英雄</a>
+        <a href="#scenery" class="text-dark hover:text-primary transition-colors py-2">旅游景点</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 首页横幅 -->
+  <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://picsum.photos/id/137/1920/1080" alt="大竹县风光" class="w-full h-full object-cover">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </div>
+    <div class="container mx-auto px-4 z-10 text-center text-white">
+      <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-bold mb-4 text-shadow">川东明珠 · 竹韵之乡</h1>
+      <p class="text-[clamp(1rem,2vw,1.5rem)] mb-8 max-w-3xl mx-auto text-shadow">
+        大竹县，隶属四川省达州市，地处川东平行岭谷区，因"竹多竹大"而得名。这里不仅有秀美的自然风光，更有深厚的历史文化、独特的民俗风情和诱人的特色美食。
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#food" class="bg-secondary hover:bg-secondary/90 text-white font-medium py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-xl">
+          探索美食
+        </a>
+        <a href="#culture" class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-medium py-3 px-8 rounded-full transition-all">
+          了解文化
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+      <a href="#food" class="text-3xl">
+        <i class="fa fa-angle-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- 特色美食 -->
+  <section id="food" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">大竹特色美食</h2>
+        <div class="section-divider"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">川东风味，鲜香麻辣，大竹美食融合了巴蜀饮食文化的精髓，每一道都令人回味无穷</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 美食卡片1 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="images/肉丁面.jpg" style="width: 600px;height: 400;" alt="大竹肉丁面" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">大竹肉丁面</h3>
+            <p class="text-gray-600 mb-4">劲道的碱水面吸满麻辣鲜香的肉丁臊子肉，一口下去，满嘴肉香，爽口却不腻。</p>
+            <div class="flex items-center text-secondary">
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star-half-o"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 美食卡片2 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="images/观音豆干.jpg" style="width: 600;height: 400;" alt="观音豆腐干" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">观音豆腐干</h3>
+            <p class="text-gray-600 mb-4">历史悠久的传统名小吃，采用优质大豆和山泉水制作，经多道工序精制而成，口感丰富、咸香适度、品种多样。</p>
+            <div class="flex items-center text-secondary">
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 美食卡片3 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="images/醪糟.jpg" style="width: 600;height: 400;" alt="东柳醪糟" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">东柳醪糟</h3>
+            <p class="text-gray-600 mb-4">选用优质糯米，采用传统工艺发酵制成，色泽晶莹、香气浓郁、味道醇甜，是滋补养生的佳品，可直接食用或烹饪调味。</p>
+            <div class="flex items-center text-secondary">
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 美食卡片4 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="images/凉虾.jpg" style="width: 600;height: 400;" alt="凉虾" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">凉虾</h3>
+            <p class="text-gray-600 mb-4">夏季特色小吃，以大米为原料，制成虾状的米浆制品，搭配红糖水或酸梅汤，清凉解暑、香甜可口，是当地人夏日必备饮品。</p>
+            <div class="flex items-center text-secondary">
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star-half-o mr-1"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 美食卡片5 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="images/灯影牛肉.jpg" style="width: 600;height: 400;" alt="灯影牛肉" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">灯影牛肉</h3>
+            <p class="text-gray-600 mb-4">美食界的瑰宝，其薄如纸片，色泽红亮，入口便觉麻辣鲜香在舌尖散开。</p>
+            <div class="flex items-center text-secondary">
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 美食卡片6 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="images/格格肉.jpg" style="width: 600;height: 400;" alt="格格肉" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">格格肉</h3>
+            <p class="text-gray-600 mb-4">米粉裹肉，软糯入味,米粉吸尽肉香，入口即化不腻</p>。</p>
+            <div class="flex items-center text-secondary">
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star mr-1"></i>
+              <i class="fa fa-star-half-o"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 风土人情 -->
+  <section id="culture" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">风土人情</h2>
+        <div class="section-divider"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">竹文化浸润的千年古县，传承着独特的民俗风情和非物质文化遗产</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <h3 class="text-2xl font-bold text-primary mb-6">竹文化</h3>
+          <p class="text-gray-600 mb-4">大竹县因竹得名，竹资源丰富，拥有"中国苎麻之乡"、"中国香椿之乡"、"中国糯米之乡"等美誉。竹文化在这里根深蒂固，渗透到生活的方方面面。</p>
+          <p class="text-gray-600 mb-6">当地人民爱竹、赏竹、用竹，竹编等竹制品工艺精湛，竹宴、竹茶等竹文化产品独具特色。</p>
+          
+          <h3 class="text-2xl font-bold text-primary mb-6">非物质文化遗产</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <i class="fa fa-leaf text-secondary mt-1 mr-3"></i>
+              <span><strong class="text-dark">大竹竹编：</strong>传统手工技艺，以当地盛产的慈竹为原料，编织出各种生活用品和工艺品，图案精美，实用性强。</span>
+            </li>
+            
+           
+            <li class="flex items-start">
+              <i class="fa fa-cutlery text-secondary mt-1 mr-3"></i>
+              <span><strong class="text-dark">观音豆腐干制作技艺：</strong>百年传承的手工制作工艺，保留了传统风味和营养成分。</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="order-1 lg:order-2 grid grid-cols-2 gap-4">
+          <div class="rounded-lg overflow-hidden shadow-md h-48 md:h-64">
+            <img src="images/竹编.jpg" style="width: 600;height: 800;" alt="大竹竹编" class="w-full h-full object-cover">
+          </div>
+          
+          <div class="rounded-lg overflow-hidden shadow-md h-48 md:h-64">
+            <img src="images/竹文化.jpg" style="width: 600;height: 800;" alt="竹文化" class="w-full h-full object-cover">
+          </div>
+          <div class="rounded-lg overflow-hidden shadow-md h-48 md:h-64 mt-8 md:mt-16">
+            <img src="images/传统工艺.jpg" style="width: 600;height: 800;" alt="传统工艺" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    <!-- 旅游景点 -->
+  <section id="scenery" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">旅游景点</h2>
+        <div class="section-divider"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">竹韵山水，人文景观，大竹县拥有丰富的旅游资源，等你来探索</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 景点卡片1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-60 overflow-hidden relative">
+            <img src="images/公园.jpg" style="width: 800;height: 600;" alt="五峰山国家森林公园" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-primary text-white text-sm font-medium py-1 px-3 rounded-full">
+              国家4A级景区
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">五峰山国家森林公园</h3>
+            <p class="text-gray-600 mb-4">位于大竹县东部，总面积达1200公顷，森林覆盖率达94.1%。公园内竹类繁多，有楠竹、慈竹等100余种，是名副其实的"竹类博物馆"。</p>
+            <div class="flex items-center text-gray-500 text-sm mb-4">
+              <span class="flex items-center mr-4">
+                <i class="fa fa-map-marker text-secondary mr-1"></i>
+                大竹县月华镇
+              </span>
+              <span class="flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-1"></i>
+                8:00-18:00
+              </span>
+            </div>
+            <a href="#" class="inline-block text-primary font-medium hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 景点卡片2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-60 overflow-hidden relative">
+            <img src="images/古镇.jpg" style="width: 800;height: 600;" alt="清河古镇" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-sm font-medium py-1 px-3 rounded-full">
+              省级历史文化名镇
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">清河古镇</h3>
+            <p class="text-gray-600 mb-4">始建于明代，是爱国将领范绍增的故乡。古镇保留了大量明清时期的古建筑，尤以中西合璧的"哈儿街"最为著名，建筑风格独特，极具观赏价值。</p>
+            <div class="flex items-center text-gray-500 text-sm mb-4">
+              <span class="flex items-center mr-4">
+                <i class="fa fa-map-marker text-secondary mr-1"></i>
+                大竹县清河镇
+              </span>
+              <span class="flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-1"></i>
+                全天开放
+              </span>
+            </div>
+            <a href="#" class="inline-block text-primary font-medium hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 景点卡片3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-60 overflow-hidden relative">
+            <img src="images/净土寺.jpg" style="width: 800;height: 600;" alt="净土寺" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-accent text-white text-sm font-medium py-1 px-3 rounded-full">
+              佛教圣地
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">净土寺</h3>
+            <p class="text-gray-600 mb-4">位于大竹县莲印乡，始建于唐代，是川东地区著名的佛教圣地。寺庙依山而建，建筑宏伟壮观，寺内佛像众多，香火旺盛，是修身养性的好去处。</p>
+            <div class="flex items-center text-gray-500 text-sm mb-4">
+              <span class="flex items-center mr-4">
+                <i class="fa fa-map-marker text-secondary mr-1"></i>
+                大竹县莲印乡
+              </span>
+              <span class="flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-1"></i>
+                6:00-18:00
+              </span>
+            </div>
+            <a href="#" class="inline-block text-primary font-medium hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 景点卡片4 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-60 overflow-hidden relative">
+            <img src="images/百岛湖.jpg" style="width: 800;height: 600;" alt="百岛湖" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-sm font-medium py-1 px-3 rounded-full">
+              自然风光
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">百岛湖</h3>
+            <p class="text-gray-600 mb-4">位于大竹县柏林镇，是一座人工湖泊，湖面宽阔，湖中有大小岛屿百余座，故名"百岛湖"。湖水清澈，周边森林茂密，是休闲度假、垂钓观光的理想场所。</p>
+            <div class="flex items-center text-gray-500 text-sm mb-4">
+              <span class="flex items-center mr-4">
+                <i class="fa fa-map-marker text-secondary mr-1"></i>
+                大竹县柏林镇
+              </span>
+              <span class="flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-1"></i>
+                8:00-17:30
+              </span>
+            </div>
+            <a href="#" class="inline-block text-primary font-medium hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 景点卡片5 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-60 overflow-hidden relative">
+            <img src="images/东湖公园.jpg" style="width: 800;height: 600;" alt="东湖公园" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-primary text-white text-sm font-medium py-1 px-3 rounded-full">
+              城市公园
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">东湖公园</h3>
+            <p class="text-gray-600 mb-4">位于大竹县城东部，是一座集休闲、娱乐、观光为一体的城市公园。公园内湖水清澈，绿树成荫，建有多个游乐设施和景观景点，是市民日常休闲的好去处。</p>
+            <div class="flex items-center text-gray-500 text-sm mb-4">
+              <span class="flex items-center mr-4">
+                <i class="fa fa-map-marker text-secondary mr-1"></i>
+                大竹县东柳街道
+              </span>
+              <span class="flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-1"></i>
+                全天开放
+              </span>
+            </div>
+            <a href="#" class="inline-block text-primary font-medium hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 景点卡片6 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-60 overflow-hidden relative">
+            <img src="images/云雾山.jpg" style="width: 800;height: 600;" alt="云雾山" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+            <div class="absolute top-4 left-4 bg-accent text-white text-sm font-medium py-1 px-3 rounded-full">
+              自然保护区
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">云雾山</h3>
+            <p class="text-gray-600 mb-4">位于大竹县石子镇，是四川省自然保护区，海拔1190米。山上云雾缭绕，森林覆盖率高，野生动植物资源丰富，是徒步旅行、生态观光的好去处。</p>
+            <div class="flex items-center text-gray-500 text-sm mb-4">
+              <span class="flex items-center mr-4">
+                <i class="fa fa-map-marker text-secondary mr-1"></i>
+                大竹县石子镇
+              </span>
+              <span class="flex items-center">
+                <i class="fa fa-clock-o text-secondary mr-1"></i>
+                全天开放
+              </span>
+            </div>
+            <a href="#" class="inline-block text-primary font-medium hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+        
+  
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white/80 py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="text-white text-xl font-bold mb-4 flex items-center">
+            <i class="fa fa-leaf text-primary mr-2"></i>
+            大竹县
+          </h4>
+          <p class="mb-4">川东明珠，竹韵之乡。大竹县欢迎您前来旅游观光、投资兴业。</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white/60 hover:text-primary transition-colors">
+              <i class="fa fa-weixin text-xl"></i>
+            </a>
+            <a href="#" class="text-white/60 hover:text-primary transition-colors">
+              <i class="fa fa-weibo text-xl"></i>
+            </a>
+            <a href="#" class="text-white/60 hover:text-primary transition-colors">
+              <i class="fa fa-instagram text-xl"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-bold mb-4">快速链接</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="hover:text-primary transition-colors">首页</a></li>
+            <li><a href="#food" class="hover:text-primary transition-colors">特色美食</a></li>
+            <li><a href="#culture" class="hover:text-primary transition-colors">风土人情</a></li>
+            <li><a href="#history" class="hover:text-primary transition-colors">历史英雄</a></li>
+            <li><a href="#scenery" class="hover:text-primary transition-colors">旅游景点</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-bold mb-4">旅游服务</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-primary transition-colors">旅游线路</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">酒店预订</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">美食推荐</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">交通指南</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">旅游攻略</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-bold mb-4">联系方式</h4>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+              <span>四川省达州市大竹县</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-phone text-primary mt-1 mr-3"></i>
+              <span>0818-6222XXX</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+              <span>info@dazhu-tourism.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-clock-o text-primary mt-1 mr-3"></i>
+              <span>周一至周日 9:00-18:00</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/10 pt-8 text-center text-white/60 text-sm">
+        <p>© 2025 大竹县文化旅游局 版权所有 | 蜀ICP备XXXXXXXX号</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="backToTop" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-accent">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // 移动端菜单切换
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      if (mobileMenu.classList.contains('hidden')) {
+        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+      } else {
+        menuBtn.innerHTML = '<i class="fa fa-times"></i>';
+      }
+    });
+    
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('py-2');
+        navbar.classList.remove('py-3');
+        navbar.classList.add('shadow-lg');
+        
+        backToTop.classList.remove('opacity-0', 'invisible');
+        backToTop.classList.add('opacity-100', 'visible');
+      } else {
+        navbar.classList.add('py-3');
+        navbar.classList.remove('py-2', 'shadow-lg');
+        
+        backToTop.classList.add('opacity-0', 'invisible');
+        backToTop.classList.remove('opacity-100', 'visible');
+      }
+      
+      // 关闭移动端菜单
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+      }
+    });
+    
+    // 返回顶部
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const navbarHeight = navbar.offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // 图片加载动画
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+      img.addEventListener('load', () => {
+        img.classList.remove('opacity-0');
+        img.classList.add('opacity-100');
+      });
+      // 触发加载
+      if (img.complete) {
+        img.classList.remove('opacity-0');
+        img.classList.add('opacity-100');
+      }
+    });
+  </script>
+</body>
+</html>
